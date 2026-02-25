@@ -1,26 +1,215 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cyan: #67e3df;
+  --gold: #b69d5c;
+  --light-blue: #dceef2;
+  --dark-brown: #6f371c;
+  --orange-red: #c25226;
+  --mario-red: #e52222;
+  --mario-blue: #6185ff;
+  --mario-yellow: #ffd700;
+  --bg: #080818;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--cyan);
+  font-family: var(--font-pixel), "Courier New", monospace;
+  image-rendering: pixelated;
+}
+
+/* Pixel border utility */
+.pixel-border {
+  border: 4px solid var(--cyan);
+  box-shadow:
+    4px 0 0 0 var(--cyan),
+    -4px 0 0 0 var(--cyan),
+    0 4px 0 0 var(--cyan),
+    0 -4px 0 0 var(--cyan),
+    inset 4px 0 0 0 rgba(103, 227, 223, 0.1),
+    inset -4px 0 0 0 rgba(103, 227, 223, 0.1);
+}
+
+.pixel-border-gold {
+  border: 4px solid var(--gold);
+  box-shadow:
+    4px 0 0 0 var(--gold),
+    -4px 0 0 0 var(--gold),
+    0 4px 0 0 var(--gold),
+    0 -4px 0 0 var(--gold);
+}
+
+/* Scanline overlay effect */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Glow text */
+.glow-cyan {
+  text-shadow:
+    0 0 8px var(--cyan),
+    0 0 20px var(--cyan),
+    0 0 40px var(--cyan);
+}
+
+.glow-gold {
+  text-shadow:
+    0 0 8px var(--gold),
+    0 0 20px var(--gold),
+    0 0 40px var(--gold);
+}
+
+.glow-red {
+  text-shadow:
+    0 0 8px var(--mario-red),
+    0 0 20px var(--mario-red),
+    0 0 40px var(--mario-red);
+}
+
+/* Pixel button */
+.pixel-btn {
+  position: relative;
+  background: var(--mario-red);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s;
+  box-shadow:
+    0 6px 0 #8b0000,
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.pixel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 0 #8b0000,
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.pixel-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 2px 0 #8b0000,
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.6;
+  }
+  94% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.7;
+  }
+  97% {
+    opacity: 1;
+  }
+}
+
+.flicker {
+  animation: flicker 6s infinite;
+}
+
+/* Shake animation for wrong password */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-8px);
+  }
+  30% {
+    transform: translateX(8px);
+  }
+  45% {
+    transform: translateX(-6px);
+  }
+  60% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(3px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Pixel grid background */
+.pixel-grid {
+  background-image:
+    linear-gradient(rgba(103, 227, 223, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 227, 223, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Stars effect */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--mario-yellow);
+  animation: twinkle var(--duration, 2s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
 }
