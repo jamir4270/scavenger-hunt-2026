@@ -11,6 +11,9 @@ const pixelFont = Press_Start_2P({
 export const metadata: Metadata = {
   title: "CS Scavenger Hunt 2026",
   description: "Can you find the answer?",
+  icons: {
+    icon: "/icon.png", // Reference the file in the /public directory
+  },
 };
 
 export default function RootLayout({
