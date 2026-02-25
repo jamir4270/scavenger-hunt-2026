@@ -184,14 +184,6 @@ body {
   animation: shake 0.5s ease-in-out;
 }
 
-/* Pixel grid background */
-.pixel-grid {
-  background-image:
-    linear-gradient(rgba(103, 227, 223, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(103, 227, 223, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
 /* Stars effect */
 @keyframes twinkle {
   0%,
@@ -212,4 +204,251 @@ body {
   background: var(--mario-yellow);
   animation: twinkle var(--duration, 2s) ease-in-out infinite;
   animation-delay: var(--delay, 0s);
+}
+
+/* ─── NEW ANIMATIONS ──────────────────────────────────────────── */
+
+/* Fade + slide up on entry */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Staggered delays */
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.25s;
+}
+.delay-3 {
+  animation-delay: 0.4s;
+}
+.delay-4 {
+  animation-delay: 0.55s;
+}
+.delay-5 {
+  animation-delay: 0.7s;
+}
+.delay-6 {
+  animation-delay: 0.9s;
+}
+
+/* Pulsing glow on title */
+@keyframes glowPulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 6px var(--cyan),
+      0 0 16px var(--cyan),
+      0 0 30px var(--cyan);
+  }
+  50% {
+    text-shadow:
+      0 0 12px var(--cyan),
+      0 0 32px var(--cyan),
+      0 0 60px var(--cyan),
+      0 0 80px rgba(103, 227, 223, 0.4);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Pulsing border on input */
+@keyframes borderPulse {
+  0%,
+  100% {
+    box-shadow:
+      4px 0 0 0 var(--cyan),
+      -4px 0 0 0 var(--cyan),
+      0 4px 0 0 var(--cyan),
+      0 -4px 0 0 var(--cyan),
+      0 0 8px rgba(103, 227, 223, 0.2);
+  }
+  50% {
+    box-shadow:
+      4px 0 0 0 var(--cyan),
+      -4px 0 0 0 var(--cyan),
+      0 4px 0 0 var(--cyan),
+      0 -4px 0 0 var(--cyan),
+      0 0 20px rgba(103, 227, 223, 0.6),
+      0 0 40px rgba(103, 227, 223, 0.2);
+  }
+}
+
+.border-pulse {
+  border: 4px solid var(--cyan);
+  animation: borderPulse 2.5s ease-in-out infinite;
+}
+
+/* Gentle float for decorative elements */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-y {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+/* Combined title animation: fade in then float + glow-pulse together */
+@keyframes titleEntry {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title-animated {
+  opacity: 0;
+  animation:
+    titleEntry 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards,
+    floatY 4s ease-in-out 0.85s infinite,
+    glowPulse 3s ease-in-out 0.85s infinite;
+}
+
+/* Red / yellow alert flash */
+@keyframes alertFlash {
+  0%,
+  48%,
+  100% {
+    color: var(--mario-red);
+    opacity: 1;
+  }
+  50%,
+  98% {
+    color: var(--mario-yellow);
+    opacity: 0.7;
+  }
+}
+
+.alert-flash {
+  animation: alertFlash 1.2s step-end infinite;
+}
+
+/* Gold glow pulse for bounty card border */
+@keyframes goldGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 2px #080818,
+      0 0 0 4px var(--gold),
+      0 0 24px rgba(182, 157, 92, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px #080818,
+      0 0 0 4px var(--gold),
+      0 0 48px rgba(182, 157, 92, 0.7),
+      0 0 80px rgba(182, 157, 92, 0.2);
+  }
+}
+
+.gold-glow-pulse {
+  animation: goldGlow 3s ease-in-out infinite;
+}
+
+/* Horizontal scan sweep over photo */
+@keyframes scanSweep {
+  0% {
+    top: -4px;
+    opacity: 0.7;
+  }
+  90% {
+    top: 100%;
+    opacity: 0.5;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.scan-sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(103, 227, 223, 0.7),
+    transparent
+  );
+  animation: scanSweep 3.5s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Pixel grid slow drift */
+@keyframes gridDrift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 32px 32px;
+  }
+}
+
+.pixel-grid {
+  background-image:
+    linear-gradient(rgba(103, 227, 223, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 227, 223, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  animation: gridDrift 8s linear infinite;
+}
+
+/* Zoom-in card entry */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.zoom-in {
+  opacity: 0;
+  animation: zoomIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+/* ─── MOBILE RESPONSIVENESS ───────────────────────────────────── */
+
+/* Smaller stars on mobile so they don't crowd the UI */
+@media (max-width: 480px) {
+  .star {
+    width: 3px;
+    height: 3px;
+  }
+
+  /* Shrink corner labels so they don't overlap content */
+  .corner-label {
+    font-size: 7px !important;
+    letter-spacing: 0.05em;
+  }
 }

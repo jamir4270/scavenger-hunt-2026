@@ -77,16 +77,16 @@ export default function Home() {
 
       {/* Corner decorations */}
       <div
-        className="absolute top-4 left-4 text-[10px] flicker"
+        className="corner-label absolute top-3 left-3 sm:top-4 sm:left-4 text-[8px] sm:text-[10px] flicker fade-in-up delay-1"
         style={{
           color: "var(--mario-yellow)",
           fontFamily: "var(--font-pixel)",
         }}
       >
-        PLAYER 1
+        PLAYER&nbsp;1
       </div>
       <div
-        className="absolute top-4 right-4 text-[10px] flicker"
+        className="corner-label absolute top-3 right-3 sm:top-4 sm:right-4 text-[8px] sm:text-[10px] flicker fade-in-up delay-1"
         style={{
           color: "var(--mario-yellow)",
           fontFamily: "var(--font-pixel)",
@@ -95,24 +95,24 @@ export default function Home() {
         2026
       </div>
       <div
-        className="absolute bottom-4 left-4 text-[9px]"
+        className="corner-label absolute bottom-3 left-3 sm:bottom-4 sm:left-4 text-[8px] hidden sm:block"
         style={{ color: "var(--mario-blue)", fontFamily: "var(--font-pixel)" }}
       >
         &#9632;&#9632;&#9632;&#9632;&#9632;
       </div>
       <div
-        className="absolute bottom-4 right-4 text-[9px]"
+        className="corner-label absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-[8px] hidden sm:block"
         style={{ color: "var(--mario-blue)", fontFamily: "var(--font-pixel)" }}
       >
         &#9632;&#9632;&#9632;&#9632;&#9632;
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center gap-10 px-6 py-12 w-full max-w-xl">
+      <div className="relative z-10 flex flex-col items-center gap-8 sm:gap-10 px-4 sm:px-6 py-10 sm:py-12 w-full max-w-xl">
         {/* Title block */}
         <div className="flex flex-col items-center gap-3 text-center">
           <p
-            className="text-[9px] tracking-[0.4em] flicker"
+            className="text-[9px] tracking-[0.4em] flicker fade-in-up delay-1"
             style={{
               color: "var(--mario-yellow)",
               fontFamily: "var(--font-pixel)",
@@ -121,10 +121,10 @@ export default function Home() {
             &#11088; WELCOME TO &#11088;
           </p>
           <h1
-            className="glow-cyan flicker leading-loose"
+            className="title-animated leading-loose"
             style={{
               fontFamily: "var(--font-pixel)",
-              fontSize: "clamp(14px, 3.5vw, 22px)",
+              fontSize: "clamp(13px, 4vw, 22px)",
               color: "var(--cyan)",
               letterSpacing: "0.05em",
               lineHeight: 2,
@@ -135,14 +135,14 @@ export default function Home() {
             HUNT 2026
           </h1>
           <div
-            className="w-full h-px mt-1"
+            className="w-full h-px mt-1 fade-in-up delay-3"
             style={{
               background:
                 "linear-gradient(90deg, transparent, var(--cyan), transparent)",
             }}
           />
           <p
-            className="text-[9px] mt-1"
+            className="text-[8px] sm:text-[9px] mt-1 fade-in-up delay-3"
             style={{ color: "var(--gold)", fontFamily: "var(--font-pixel)" }}
           >
             ENTER THE SECRET PASSWORD TO PROCEED
@@ -150,16 +150,14 @@ export default function Home() {
         </div>
 
         {/* Input area */}
-        <div
-          className={`w-full flex flex-col gap-4 items-center ${shaking ? "shake" : ""}`}
-        >
+        <div className="w-full flex flex-col gap-4 items-center fade-in-up delay-4">
           <div
-            className="w-full pixel-border p-1"
+            className="w-full border-pulse p-1"
             style={{ background: "#0a0a1f" }}
           >
-            <div className="flex items-center gap-2 px-3 py-2">
+            <div className="flex items-center gap-2 px-2 sm:px-3 py-2 sm:py-3">
               <span
-                className="text-[12px] blink"
+                className="text-[12px] blink shrink-0"
                 style={{
                   color: "var(--cyan)",
                   fontFamily: "var(--font-pixel)",
@@ -179,11 +177,12 @@ export default function Home() {
                 autoCorrect="off"
                 spellCheck={false}
                 disabled={success}
-                className="w-full bg-transparent border-none outline-none text-[12px] tracking-widest placeholder-opacity-30"
+                className="w-full bg-transparent border-none outline-none text-[10px] sm:text-[12px] tracking-widest placeholder-opacity-30"
                 style={{
                   fontFamily: "var(--font-pixel)",
                   color: "var(--cyan)",
                   caretColor: "var(--cyan)",
+                  minWidth: 0,
                 }}
               />
             </div>
@@ -193,10 +192,11 @@ export default function Home() {
           <div className="h-5 text-center">
             {error && (
               <p
-                className="text-[9px]"
+                className={`text-[8px] sm:text-[9px] ${shaking ? "shake" : ""}`}
                 style={{
                   color: "var(--mario-red)",
                   fontFamily: "var(--font-pixel)",
+                  display: "inline-block",
                 }}
               >
                 &#10005; {error}
@@ -204,7 +204,7 @@ export default function Home() {
             )}
             {success && (
               <p
-                className="text-[9px] glow-cyan"
+                className="text-[8px] sm:text-[9px] glow-pulse"
                 style={{
                   color: "var(--cyan)",
                   fontFamily: "var(--font-pixel)",
@@ -219,7 +219,7 @@ export default function Home() {
           <button
             onClick={handleSubmit}
             disabled={success}
-            className="pixel-btn w-full py-4 text-[11px] tracking-widest uppercase"
+            className="pixel-btn w-full py-3 sm:py-4 text-[10px] sm:text-[11px] tracking-widest uppercase fade-in-up delay-5"
             style={{ fontFamily: "var(--font-pixel)" }}
           >
             SUBMIT
@@ -228,7 +228,7 @@ export default function Home() {
 
         {/* Bottom hint */}
         <p
-          className="text-[8px] text-center opacity-40"
+          className="text-[7px] sm:text-[8px] text-center opacity-40 fade-in-up delay-6"
           style={{
             color: "var(--light-blue)",
             fontFamily: "var(--font-pixel)",

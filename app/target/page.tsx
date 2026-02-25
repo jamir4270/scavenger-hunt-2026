@@ -34,25 +34,23 @@ export default function TargetPage() {
 
       {/* Corner labels */}
       <div
-        className="absolute top-4 left-4 text-[9px] flicker"
-        style={{ color: "var(--mario-red)", fontFamily: "var(--font-pixel)" }}
+        className="corner-label absolute top-3 left-3 sm:top-4 sm:left-4 text-[8px] sm:text-[9px] alert-flash"
+        style={{ fontFamily: "var(--font-pixel)" }}
       >
         &#9632; ALERT &#9632;
       </div>
       <div
-        className="absolute top-4 right-4 text-[9px] flicker"
-        style={{ color: "var(--mario-red)", fontFamily: "var(--font-pixel)" }}
+        className="corner-label absolute top-3 right-3 sm:top-4 sm:right-4 text-[8px] sm:text-[9px] alert-flash"
+        style={{ fontFamily: "var(--font-pixel)" }}
       >
         &#9632; ALERT &#9632;
       </div>
 
       {/* Bounty card */}
       <div
-        className="relative z-10 w-full max-w-sm flex flex-col items-center gap-0"
+        className="relative z-10 w-full max-w-xs sm:max-w-sm flex flex-col items-center gap-0 zoom-in gold-glow-pulse"
         style={{
           border: "6px solid var(--gold)",
-          boxShadow:
-            "0 0 0 2px #080818, 0 0 0 4px var(--gold), 0 0 32px rgba(182,157,92,0.4)",
           background: "#0a0a1f",
         }}
       >
@@ -65,10 +63,10 @@ export default function TargetPage() {
           }}
         >
           <h1
-            className="glow-red text-center leading-relaxed"
+            className="glow-pulse text-center leading-relaxed"
             style={{
               fontFamily: "var(--font-pixel)",
-              fontSize: "clamp(18px, 5vw, 26px)",
+              fontSize: "clamp(16px, 5vw, 26px)",
               color: "#fff",
               letterSpacing: "0.1em",
             }}
@@ -98,9 +96,12 @@ export default function TargetPage() {
 
         {/* Photo */}
         <div
-          className="relative w-full"
+          className="relative w-full overflow-hidden"
           style={{ borderBottom: "4px solid var(--gold)" }}
         >
+          {/* Scan sweep line */}
+          <div className="scan-sweep" />
+
           {/* Red corner overlays for effect */}
           <div
             className="absolute top-0 left-0 w-6 h-6 z-10"
@@ -185,7 +186,7 @@ export default function TargetPage() {
 
         {/* Bounty section */}
         <div
-          className="w-full flex flex-col items-center gap-4 py-5 px-6"
+          className="w-full flex flex-col items-center gap-3 sm:gap-4 py-4 sm:py-5 px-4 sm:px-6 fade-in-up delay-4"
           style={{ background: "#06060f" }}
         >
           <div className="w-full flex items-center justify-center gap-3">
@@ -206,10 +207,10 @@ export default function TargetPage() {
           </div>
 
           <p
-            className="text-center leading-loose"
+            className="text-center leading-loose glow-pulse"
             style={{
               fontFamily: "var(--font-pixel)",
-              fontSize: "clamp(8px, 2.2vw, 11px)",
+              fontSize: "clamp(9px, 2.5vw, 11px)",
               color: "var(--cyan)",
             }}
           >
